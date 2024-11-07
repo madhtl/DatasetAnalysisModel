@@ -32,5 +32,6 @@ print(data.dtypes)
 data['image'] = data['image'].apply(lambda x: x['bytes'] if isinstance(x, dict) and 'bytes' in x else None)
 
 data.to_sql('products', conn, if_exists='replace', index=False)
+conn.close()
 
 print("Database setup complete.")
