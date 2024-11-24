@@ -24,6 +24,22 @@ try:
     # Standardize categorical columns
     df['gender'] = df['gender'].str.title()
     df['masterCategory'] = df['masterCategory'].str.capitalize()
+    # Normalize numerical columns (example: if you have numerical features)
+    numerical_columns = ['column_name_1', 'column_name_2']  # Replace with actual column names
+    scaler = MinMaxScaler()
+
+    # Apply scaling only if the columns exist in the DataFrame
+    for col in numerical_columns:
+        if col in df.columns:
+            df[col] = scaler.fit_transform(df[[col]])
+            print(f"Normalized column: {col}")
+    # Standardize categorical columns (example: lowercase all values in 'gender' column)
+    categorical_columns = ['gender', 'masterCategory', 'subCategory']  # Replace with actual columns
+
+    for col in categorical_columns:
+        if col in df.columns:
+            df[col] = df[col].str.lower().str.strip()
+            print(f"Standardized column: {col}")
 
     # Save standardized data
     df.to_sql('products', conn, if_exists='replace', index=False)
