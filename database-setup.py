@@ -19,6 +19,13 @@ data = transform_image_column(data)
 
 # Save data to database
 data.to_sql('products', conn, if_exists='replace', index=False)
-conn.close()
 
 print("Database setup complete.")
+# Load data from database
+df = pd.read_sql('SELECT * FROM products', conn)
+print("Initial Data: ")
+print(df.head())
+
+print("Columns in the dataset: ", df.columns)
+conn.close()
+
