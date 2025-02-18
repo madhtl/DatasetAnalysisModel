@@ -2,8 +2,11 @@ import pandas as pd
 import json
 from utils.db_utils import connect_to_database, update_product
 from utils.data_utils import normalize_numerical_columns, standardize_categorical_columns
+import logging
+#to implement
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
-# Configuration
+# Load Config
 with open('config.json') as f:
     config = json.load(f)
 
